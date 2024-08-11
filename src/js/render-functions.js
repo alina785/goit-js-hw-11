@@ -1,37 +1,33 @@
-'use strict';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
-const refs = {
-imageSearchForm: document.querySelector('.search-form'),
-imageSearchInput: document.querySelector('.search-input'),
-submitButton: document.querySelector('.search-btn'),
-imageList: document.querySelector('.images-list'),
+export function createImages(data) {
+    const lightbox = new SimpleLightbox('.gallery-list a', {
+        captions: true,
+        captionsData: 'alt',
+        captionsDelay: 250
+    });
+
+    const galleryList = document.querySelector('.gallery-list');
+
+    let images = data.hits.map((image) =>
+        `<div class="image-wrapper">
+    <a href="${image.largeImageURL}">
+    <img class="gallery-img" src="${image.webformatURL}" alt="${image.tags}"></img>
+    </a>
+    <div class="text-wrapper">
+    <div class="text-item"><h5 class="text-header">Likes</h5><p class="text-paragraph">${image.likes}</p></div>
+    <div class="text-item"><h5 class="text-header">Views</h5><p class="text-paragraph">${image.views}</p></div>
+    <div class="text-item"><h5 class="text-header">Comments</h5><p class="text-paragraph">${image.comments}</p></div>
+    <div class="text-item"><h5 class="text-header">Downloads</h5><p class="text-paragraph">${image.downloads}</p></div>
+    </div>
+    </div>`).join("");
+        
+    galleryList.insertAdjacentHTML('beforeend', images);
+    lightbox.refresh();
 }
 
-export function renderImages(images) {
-
-    const markup = images.hits.map((image) => {
-       return `<li class="images-list-item">
-  <a class="img-link" href=${image.largeImageURL} onclick="event.preventDefault()"><img class="img" src=${image.webformatURL} alt=${image.tags}></img></a>
-   <ul class="img-dscr">
-      <li class="img-data">
-        <p class="img-data-title">Likes</p>
-        <p class="img-data-numbers">${image.likes}</p>
-      </li>
-      <li class="img-data">
-        <p class="img-data-title">Views</p>
-        <p class="img-data-numbers">${image.views}</p>
-      </li>
-      <li class="img-data">
-        <p class="img-data-title">Comments</p>
-        <p class="img-data-numbers">${image.comments}</p>
-      </li>
-      <li class="img-data">
-        <p class="img-data-title">Downloads</p>
-        <p class="img-data-numbers">${image.downloads}</p>
-      </li>
-    </ul>
-</li>`;
-    }).join('\n');
-
-    refs.imageList.innerHTML = markup;
+export function clearImages() {
+    const galleryList = document.querySelector('.gallery-list');
+    galleryList.innerHTML = "";
 }
