@@ -1,13 +1,13 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-export function createImages(data) {
-    const lightbox = new SimpleLightbox('.gallery-list a', {
-        captions: true,
-        captionsData: 'alt',
-        captionsDelay: 250
-    });
+const lightbox = new SimpleLightbox('.gallery-list a', {
+    captions: true,
+    captionsData: 'alt',
+    captionsDelay: 250
+});
 
+export function createImages(data) {
     const galleryList = document.querySelector('.gallery-list');
 
     let images = data.hits.map((image) =>
@@ -22,7 +22,7 @@ export function createImages(data) {
     <div class="text-item"><h5 class="text-header">Downloads</h5><p class="text-paragraph">${image.downloads}</p></div>
     </div>
     </div>`).join("");
-        
+
     galleryList.insertAdjacentHTML('beforeend', images);
     lightbox.refresh();
 }

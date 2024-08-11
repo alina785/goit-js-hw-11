@@ -1,3 +1,6 @@
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+
 export function searchGalleryQuery(query) {
     const URL = "https://pixabay.com/api/";
     const API_KEY = "44710644-2154e124280f212c40f530ba7";
@@ -10,6 +13,9 @@ export function searchGalleryQuery(query) {
             return response.json();
         })
         .catch((error) => {
-        console.log(error);
-    })
+            iziToast.error({
+                position: 'topRight',
+                message: `An error occurred: ${error.message}`,
+            });
+        });
 }

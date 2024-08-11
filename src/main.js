@@ -18,18 +18,19 @@ function handleSubmitBtn(event) {
     let searchWord = input.value.trim();
 
     searchGalleryQuery(`${searchWord}`)
-            .then((data) => {
-                if (data.total === 0 || searchWord === "") { 
-                    iziToast.error({
-                        position: 'topRight',
-                        message: "Sorry, there are no images matching your search query. Please try again!",
-                    })
-                    loader.classList.add('hidden');
-                    return;
-                }
-                else { createImages(data) }
-                loader.classList.add('hidden');
-            })
-    
-    form.reset();
+        .then((data) => {
+            if (data.total === 0 || searchWord === "") {
+                iziToast.error({
+                    position: 'topRight',
+                    message: "Sorry, there are no images matching your search query. Please try again!",
+                });
+                return;
+            } else {
+                createImages(data);
+                form.reset();
+            }
+        })
+        .finally(() => {
+            loader.classList.add('hidden');
+        });
 }
