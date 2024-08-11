@@ -2,39 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>goit-js-hw-11</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
     
     <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-8c59ed88.js">
     <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-1cd1f9d9.css">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-37f3ede4.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-2ca0b55f.css">
   </head>
   <body>
-    <header></header>
-    <main>
-      <form action="" class="search-form">
-        <input
-          type="search"
-          class="search-input"
-          id="search-input"
-          name="userData"
-          placeholder="Search images..."
-        />
-        <button type="submit" class="search-btn">Search</button>
-      </form>
-
-      <span class="loader"></span>
-
-      <ul class="images-list"></ul>
-    </main>
-    <footer></footer>
+    <section>
+      <div class="container-gallery">
+        <form class="form-gallery">
+          <label for="query-for-search">
+            <input
+              type="text"
+              class="form-gallery-input"
+              name="query-for-search"
+              id="query-for-search"
+              placeholder="Search-images..."
+              required
+            />
+          </label>
+          <button class="form-gallery-btn" type="submit">Search</button>
+        </form>
+        <span class="hidden loader"></span>
+        <ul class="gallery-list"></ul>
+      </div>
+    </section>
     
   </body>
 </html>
